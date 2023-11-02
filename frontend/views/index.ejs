@@ -9,7 +9,7 @@
 <body id="container">
     <div id="sub-container">
         <div id="cover">
-            <img src="/assets/photos/cover/<%= imageName %>" alt="Dynamic Image">
+            <img src="/assets/photos/cover/<%= coverImageName %>" alt="Dynamic Image">
         </div>
 
         <form action="/" method="GET">
@@ -18,7 +18,7 @@
         </form>
 
         <ul>
-            <% folderNames.forEach(function(folder) { %>
+            <% yearInfo.folderYearNames.forEach(function(folder) { %>
                 <li><%= folder %></li>
             <% }); %>
         </ul>
@@ -26,5 +26,6 @@
 
 </body>
 </html>
+
 
 
