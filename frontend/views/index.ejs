@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Home_Media_Application</title>
+</head>
+<body id="container">
+    <div id="sub-container">
+        <div id="cover">
+            <img src="/assets/photos/cover/<%= imageName %>" alt="Dynamic Image">
+        </div>
+
+        <form action="/" method="GET">
+            <input type="text" name="searchTerm" placeholder="Search...">
+            <button type="submit">Search</button>
+        </form>
+
+        <ul>
+            <% folderNames.forEach(function(folder) { %>
+                <li><%= folder %></li>
+            <% }); %>
+        </ul>
+    </div>
+
+</body>
+</html>
+
+

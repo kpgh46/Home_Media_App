@@ -1,0 +1,45 @@
+const fs = require("fs").promises;
+const path = require("path");
+
+exports.getmain = async (req, res) => {
+	// Define the paths to the directories
+	const coverDirectoryPath =
+		"/Users/kevinmcpeak/Projects/Home_Media_App/frontend/public/assets/photos/cover/";
+	const picturesDirectoryPath =
+		"/Users/kevinmcpeak/Projects/Home_Media_App/frontend/public/assets/photos/pictures/";
+
+	try {
+		// Read the cover directory
+		const coverFiles = await fs.readdir(coverDirectoryPath);
+		// Filter the files to only include image files
+		const coverImageFiles = coverFiles.filter((file) =>
+			/\.(jpg|jpeg|png)$/i.test(file)
+		);
+		// Get the first image file
+		const imageName = coverImageFiles[0];
+
+		// Read the pictures directory
+		const picturesFiles = await fs.readdir(picturesDirectoryPath);
+		// For each file in the pictures directory, check if it's a directory
+		const folderNames = await Promise.all(
+			picturesFiles.map(async (file) => {
+				const fullPath = path.join(picturesDirectoryPath, file);
+				const stats = await fs.stat(fullPath);
+				// If it's a directory, add it to the folderNames array
+				return stats.isDirectory() ? file : null;
+			})
+		);
+
+		// Render the index page with the image name and folder names
+		res.render("index", {
+			imageName,
+			folderNames: folderNames.filter(Boolean),
+		});
+	} catch (err) {
+		// If an error occurs, log it and send a 500 response
+		console.error("Error:", err);
+		res.status(500).send(
+			"An error occurred while reading the directories."
+		);
+	}
+};
