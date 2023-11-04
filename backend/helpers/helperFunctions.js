@@ -13,18 +13,31 @@ let getCoverPhoto = async (filePath) => {
 };
 
 let getFolderNames = async (filePath) => {
-	const picturesFiles = await fs.readdir(filePath);
+	// async method which will read the directory of the given path
+	const pictureDir = await fs.readdir(filePath);
 
-	const folderNames = await Promise.all(
-		picturesFiles.map(async (file) => {
-			const fullPath = path.join(filePath, file);
-			const stats = await fs.stat(fullPath);
+	// takes the directory names and filters out "DS_Store"
+	let years = pictureDir.filter((dir) => dir !== ".DS_Store");
+	let yearsAndContents = [];
 
-			return stats.isDirectory() ? file : null;
+	//  Promise.all awaits looping through years.  years maps
+	await Promise.all(
+		years.map(async (year) => {
+			const yearPath = path.join(filePath, year);
+			const contents = await fs.readdir(yearPath);
+
+			const images = contents.filter(
+				(file) =>
+					!file.startsWith(".") && /\.(jpg|jpeg|png)$/i.test(file)
+			);
+			yearsAndContents.push({
+				year: year,
+				contents: images,
+			});
 		})
 	);
 
-	return folderNames;
+	return yearsAndContents;
 };
 
 module.exports = { getCoverPhoto, getFolderNames };

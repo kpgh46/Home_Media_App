@@ -12,17 +12,11 @@ exports.getmain = async (req, res) => {
 	try {
 		const coverImageName = await getCoverPhoto(coverDirectoryPath);
 
-		// get folder names (years)
-		const folderYearNames = await getFolderNames(picturesDirectoryPath);
-
-		let yearInfo = {
-			folderYearNames: folderYearNames.filter(Boolean),
-			testString: "this is a string",
-		};
+		let folderContents = await getFolderNames(picturesDirectoryPath);
 
 		res.render("index", {
 			coverImageName,
-			yearInfo,
+			folderContents,
 		});
 	} catch (err) {
 		console.error("Error:", err);

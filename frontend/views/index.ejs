@@ -17,11 +17,21 @@
             <button type="submit">Search</button>
         </form>
 
-        <ul>
-            <% yearInfo.folderYearNames.forEach(function(folder) { %>
-                <li><%= folder %></li>
+        <h1>Image Gallery</h1>
+        <% if (folderContents) { %>
+            <% folderContents.forEach(function(folder) { %>
+                <div class="year-block">
+                    <h2><%= folder.year %></h2>
+                    <div class="images">
+                        <% folder.contents.forEach(function(image) { %>
+                            <img class="" src="/assets/photos/pictures/<%= folder.year %>/<%= image %>" alt="<%= image %>">
+                        <% }); %>
+                    </div>
+                </div>
             <% }); %>
-        </ul>
+        <% } else { %>
+            <p>No images to display.</p>
+        <% } %>
     </div>
 
 </body>
