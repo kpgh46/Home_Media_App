@@ -13,15 +13,14 @@ let getCoverPhoto = async (filePath) => {
 };
 
 let getFolderNames = async (filePath) => {
-	// async method which will read the directory of the given path
+	// Async method which will read the directory of the given path
 	const pictureDir = await fs.readdir(filePath);
 
-	// takes the directory names and filters out "DS_Store"
+	// Takes the directory names and filters out "DS_Store"
 	let years = pictureDir.filter((dir) => dir !== ".DS_Store");
-	let yearsAndContents = [];
 
-	//  Promise.all awaits looping through years.  years maps
-	await Promise.all(
+	// The contents array will be populated after reading all directories
+	let yearsAndContents = await Promise.all(
 		years.map(async (year) => {
 			const yearPath = path.join(filePath, year);
 			const contents = await fs.readdir(yearPath);
@@ -30,12 +29,16 @@ let getFolderNames = async (filePath) => {
 				(file) =>
 					!file.startsWith(".") && /\.(jpg|jpeg|png)$/i.test(file)
 			);
-			yearsAndContents.push({
+
+			return {
 				year: year,
 				contents: images,
-			});
+			};
 		})
 	);
+
+	// Sort the yearsAndContents by year after all asynchronous operations have finished
+	yearsAndContents.sort((a, b) => a.year.localeCompare(b.year));
 
 	return yearsAndContents;
 };

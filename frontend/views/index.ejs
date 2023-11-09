@@ -20,13 +20,11 @@
         <h1>Image Gallery</h1>
         <% if (folderContents) { %>
             <% folderContents.forEach(function(folder) { %>
-                <div class="year-block">
+                <div class="year-row">
                     <h2><%= folder.year %></h2>
-                    <div class="images">
                         <% folder.contents.forEach(function(image) { %>
-                            <img class="" src="/assets/photos/pictures/<%= folder.year %>/<%= image %>" alt="<%= image %>">
+                            <img class="year-row_images" src="/assets/photos/pictures/<%= folder.year %>/<%= image %>" alt="<%= image %>">
                         <% }); %>
-                    </div>
                 </div>
             <% }); %>
         <% } else { %>
