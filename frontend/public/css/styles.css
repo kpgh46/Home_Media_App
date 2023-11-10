@@ -1,42 +1,43 @@
 #container{
     border: 1px solid black;
-    width: 80%;
-    height: 2500px;
-    margin: 0 auto;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    padding: 50px;
 }
 
-#sub-container{
-    width: 90%;
-    height: 80%;
-    margin:0 auto;
-    margin-top: 3%;
-    border: 1px solid black;
+.cover{
+    border: 1px solid red;
 }
 
-#cover{
-    border: 1px solid black;
-    width: 70%;
-    height: 300px;
-    margin: 0 auto;
-    margin-top: 15px;;
+.cover__image{
+    height: 500px;
+    border-radius: 15px;
 }
 
-#cover img{
-
-    width: 100%;
-    height: 100%;
-
+.gallery{
+    width:100%;
 }
-.year-row{
+.gallery__row{
     border: .5px solid red;
     width: 100%;
     height:fit-content;
+
 }
 
-.year-row_images{
+.gallery__images{
+    display: flex;
+
+}
+
+.gallery__image{
     border: 1px solid blue;
     border-radius: 5px;
     width:220px;
     height: 175px;
     margin-left: 5px;
+}
+
+.gallery__image:hover{
+    border: 2px solid green;
 }

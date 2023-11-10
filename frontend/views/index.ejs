@@ -7,9 +7,8 @@
     <title>Home_Media_Application_Dev</title>
 </head>
 <body id="container">
-    <div id="sub-container">
-        <div id="cover">
-            <img src="/assets/photos/cover/<%= coverImageName %>" alt="Dynamic Image">
+        <div class="cover">
+            <img class="cover__image" src="/assets/photos/cover/<%= coverImageName %>" alt="Dynamic Image">
         </div>
 
         <form action="/" method="GET">
@@ -17,20 +16,25 @@
             <button type="submit">Search</button>
         </form>
 
-        <h1>Image Gallery</h1>
-        <% if (folderContents) { %>
-            <% folderContents.forEach(function(folder) { %>
-                <div class="year-row">
-                    <h2><%= folder.year %></h2>
-                        <% folder.contents.forEach(function(image) { %>
-                            <img class="year-row_images" src="/assets/photos/pictures/<%= folder.year %>/<%= image %>" alt="<%= image %>">
-                        <% }); %>
-                </div>
-            <% }); %>
-        <% } else { %>
-            <p>No images to display.</p>
-        <% } %>
-    </div>
+        <div class="gallery">
+            <h1>Image Gallery</h1>
+                <% if (folderContents) { %>
+                    <% folderContents.forEach(function(folder) { %>
+                        <div class="gallery__row">
+                            <h2 class="gallery__date"><%= folder.year %></h2>
+                            <div class="gallery__images">
+                                <% folder.contents.forEach(function(image) { %>
+                                    <img class="gallery__image" src="/assets/photos/pictures/<%= folder.year %>/<%= image %>" alt="<%= image %>">
+                                    <div class="gallery__image--hidden"></div>
+                                <% }); %>
+                            </div>
+                        </div>
+                    <% }); %>
+                <% } else { %>
+                    <p>No images to display.</p>
+                <% } %>
+        </div>
+
 
 </body>
 </html>

@@ -4,10 +4,8 @@ const { getCoverPhoto, getFolderNames } = require("../helpers/helperFunctions");
 
 exports.getmain = async (req, res) => {
 	// Define the paths to the directories
-	const coverDirectoryPath =
-		"/Users/kevinmcpeak/Projects/Home_Media_App/frontend/public/assets/photos/cover/";
-	const picturesDirectoryPath =
-		"/Users/kevinmcpeak/Projects/Home_Media_App/frontend/public/assets/photos/pictures/";
+	const coverDirectoryPath = "./frontend/public/assets/photos/cover/";
+	const picturesDirectoryPath = "./frontend/public/assets/photos/pictures/";
 
 	try {
 		const coverImageName = await getCoverPhoto(coverDirectoryPath);
