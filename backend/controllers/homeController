@@ -1,20 +1,31 @@
 const fs = require("fs").promises;
 const path = require("path");
 const { getCoverPhoto, getFolderNames } = require("../helpers/helperFunctions");
+const { getAllMedia } = require("../repository/mediaRepository");
 
 exports.getmain = async (req, res) => {
 	// Define the paths to the directories
 	const coverDirectoryPath = "./frontend/public/assets/photos/cover/";
-	const picturesDirectoryPath = "./frontend/public/assets/photos/pictures/";
 
 	try {
 		const coverImageName = await getCoverPhoto(coverDirectoryPath);
 
-		let folderContents = await getFolderNames(picturesDirectoryPath);
+		// from repository
+		let mediaContents = getAllMedia();
+
+		const mediaByYear = {};
+
+		// structure based on year
+		mediaContents.forEach((item) => {
+			if (!mediaByYear[item.year]) {
+				mediaByYear[item.year] = [];
+			}
+			mediaByYear[item.year].push(item);
+		});
 
 		res.render("index", {
 			coverImageName,
-			folderContents,
+			mediaByYear,
 		});
 	} catch (err) {
 		console.error("Error:", err);

@@ -18,21 +18,16 @@
 
         <div class="gallery">
             <h1>Image Gallery</h1>
-                <% if (folderContents) { %>
-                    <% folderContents.forEach(function(folder) { %>
-                        <div class="gallery__row">
-                            <h2 class="gallery__date"><%= folder.year %></h2>
-                            <div class="gallery__images">
-                                <% folder.contents.forEach(function(image) { %>
-                                    <img class="gallery__image" src="/assets/photos/pictures/<%= folder.year %>/<%= image %>" alt="<%= image %>">
-                                    <div class="gallery__image--hidden"></div>
-                                <% }); %>
-                            </div>
-                        </div>
-                    <% }); %>
-                <% } else { %>
-                    <p>No images to display.</p>
-                <% } %>
+            <% for(const year in mediaByYear) { %>
+                <div class="gallery__row">
+                    <h2><%= year %></h2>
+                    <div class="image-row">
+                        <% mediaByYear[year].forEach(media => { %>
+                            <img class="<%= media.favorite ? 'gallery__image--yellow' : 'gallery__image--red' %>" src="<%= media.url %>" alt="Media">
+                        <% }); %>
+                    </div>
+                </div>
+            <% } %>
         </div>
 
 

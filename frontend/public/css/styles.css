@@ -30,12 +30,22 @@
 
 }
 
-.gallery__image{
-    border: 1px solid blue;
+/* Base class with shared properties */
+.gallery__image {
+    border: 1px solid black; /* Set a default border color if needed */
     border-radius: 5px;
-    width:220px;
+    width: 220px;
     height: 175px;
     margin-left: 5px;
+}
+
+.gallery__image--yellow {
+    border: 2px solid yellow !important;
+}
+
+/* Modifier for red border */
+.gallery__image--red {
+    border-color: red !important;
 }
 
 .gallery__image:hover{
