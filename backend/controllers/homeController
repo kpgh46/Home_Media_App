@@ -1,9 +1,10 @@
 const fs = require("fs").promises;
 const path = require("path");
+const multer = require("multer");
 const { getCoverPhoto, getFolderNames } = require("../helpers/helperFunctions");
 const { getAllMedia } = require("../repository/mediaRepository");
 
-exports.getmain = async (req, res) => {
+const getmain = async (req, res) => {
 	// Define the paths to the directories
 	const coverDirectoryPath = "./frontend/public/assets/photos/cover/";
 
@@ -34,3 +35,28 @@ exports.getmain = async (req, res) => {
 		);
 	}
 };
+
+const storage = multer.diskStorage({
+	destination: function (req, file, cb) {
+		console.log(__dirname);
+
+		cb(
+			null,
+			"/Users/kevinmcpeak/Projects/Home_Media_App/frontend/public/assets/photos/pictures"
+		);
+	},
+	filename: function (req, file, cb) {
+		const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+		cb(
+			null,
+			file.fieldname +
+				"-" +
+				uniqueSuffix +
+				path.extname(file.originalname)
+		);
+	},
+});
+
+const upload = multer({ storage: storage });
+
+module.exports = { getmain, upload };

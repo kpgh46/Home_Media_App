@@ -4,7 +4,7 @@
         "type": "photo",
         "month": "September",
         "year": 2021,
-        "url": "/assets/photos/pictures/2021/theOffice_image2021.jpeg",
+        "url": "/assets/photos/pictures/theOffice_image2021.jpeg",
         "favorite": true,
         "tags": ["grace", "erin"]
 
@@ -14,7 +14,7 @@
         "type": "photo",
         "month": "September",
         "year": 2022,
-        "url": "/assets/photos/pictures/2022/theOffice_image2022.jpeg",
+        "url": "/assets/photos/pictures/theOffice_image2022.jpeg",
         "favorite": false,
         "tags": ["grace", "erin"]
 
@@ -24,7 +24,7 @@
         "type": "photo",
         "month": "November",
         "year": 2019,
-        "url": "/assets/photos/pictures/2019/theOffice_image2019_2.jpeg",
+        "url": "/assets/photos/pictures/theOffice_image2019_2.jpeg",
         "favorite": false,
         "tags": ["kevin", "annabelle"]
 
@@ -34,7 +34,7 @@
         "type": "photo",
         "month": "September",
         "year": 2019,
-        "url": "/assets/photos/pictures/2019/theOffice_image2019.jpeg",
+        "url": "/assets/photos/pictures/theOffice_image2019.jpeg",
         "favorite": false,
         "tags": ["grace", "erin"]
 
